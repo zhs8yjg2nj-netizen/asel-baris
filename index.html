@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
 }
 
-/* YILDIZLAR */
+/* YILDIZLI ARKA PLAN */
 .stars {
   position: fixed;
   width: 100%;
@@ -24,8 +24,8 @@ body {
   z-index: -2;
 }
 @keyframes moveStars {
-  from {background-position: 0 0;}
-  to {background-position: -10000px 5000px;}
+  from { background-position: 0 0; }
+  to { background-position: -10000px 5000px; }
 }
 
 /* KALPLER */
@@ -61,8 +61,15 @@ body {
   box-shadow: 0 25px 60px rgba(0,0,0,0.5);
 }
 
-h1 { font-size: 28px; margin-bottom: 10px; }
-p { font-size: 16px; line-height: 1.6; }
+h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
 
 .counter {
   margin: 20px 0;
@@ -81,11 +88,13 @@ p { font-size: 16px; line-height: 1.6; }
   display: block;
   margin: 12px 0;
   padding: 14px;
+  width: 100%;
   background: #fff;
   color: #000;
-  text-decoration: none;
+  border: none;
   border-radius: 30px;
   font-weight: bold;
+  font-size: 15px;
 }
 
 .secret {
@@ -94,6 +103,7 @@ p { font-size: 16px; line-height: 1.6; }
   font-size: 14px;
   opacity: 0.85;
 }
+
 .secret span {
   display: none;
   margin-top: 10px;
@@ -127,7 +137,7 @@ p { font-size: 16px; line-height: 1.6; }
       <img src="foto3.jpg">
     </div>
 
-    <a class="btn" href="https://open.spotify.com/">Bizim Şarkımız 🎵</a>
+    <button class="btn" onclick="playMusic()">Şarkıyı Başlat 💖</button>
 
     <div class="secret" onclick="reveal()">
       💫 Gizli Mesaj
@@ -137,24 +147,32 @@ p { font-size: 16px; line-height: 1.6; }
   </div>
 </div>
 
-<audio autoplay loop>
-  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Baro/Single/Baro_-_Ihtiyaci_Var.mp3">
+<audio id="music" loop>
+  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Baro/Single/Baro_-_Ihtiyaci_Var.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-// Sayaç
-const startDate = new Date("2005-08-24");
-const now = new Date();
-const days = Math.floor((now - startDate) / (1000*60*60*24));
-document.getElementById("days").innerHTML =
-  `24.08.2005’ten beri<br><strong>${days}</strong> gündür kalbimdesin 🖤`;
+// TANISMA TARIHI → 24 AĞUSTOS 2025
+const startDate = new Date("2025-08-24");
+const today = new Date();
+const diffTime = today - startDate;
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-// Gizli mesaj
+document.getElementById("days").innerHTML =
+  `24.08.2025’ten beri<br><strong>${diffDays}</strong> gündür kalbimdesin 🖤`;
+
+// GIZLI MESAJ
 function reveal() {
   document.getElementById("msg").style.display = "block";
 }
 
-// Kalp animasyonu
+// MUZIK
+function playMusic() {
+  const music = document.getElementById("music");
+  music.play();
+}
+
+// KALP ANIMASYONU
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
